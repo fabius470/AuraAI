@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AURA // Regole & Stato</title>
+  <style>
+    :root {
+      --bg: #07090d;
+      --panel: #0e131a;
+      --panel-2: #141b24;
+      --line: #1e293b;
+      --ink: #f8fafc;
+      --dim: #94a3b8;
+      --cyan: #06b6d4;
+      --cyan-dim: rgba(6, 182, 212, 0.14);
+      --red: #ef4444;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: linear-gradient(180deg, rgba(6, 182, 212, 0.06) 0%, var(--bg) 45%);
+      color: var(--ink);
+    }
+
+    .sheet {
+      width: 100%;
+      max-width: 540px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 26px;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 10.5px;
+      font-weight: 800;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--cyan-dim);
+      border: 1px solid rgba(6, 182, 212, 0.4);
+      color: var(--cyan);
+      margin-bottom: 12px;
+    }
+
+    .tag.alert {
+      background: rgba(239, 68, 68, 0.14);
+      border-color: rgba(239, 68, 68, 0.45);
+      color: #fca5a5;
+    }
+
+    h1 {
+      font-size: 21px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .lead {
+      font-size: 13px;
+      color: var(--dim);
+      line-height: 1.5;
+      margin-bottom: 18px;
+    }
+
+    .rule-box {
+      background: var(--panel-2);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 15px 18px;
+      margin-bottom: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .rule-box li {
+      margin-left: 16px;
+      font-size: 13px;
+      line-height: 1.45;
+      color: #cbd5e1;
+    }
+
+    .ban-box {
+      background: rgba(239, 68, 68, 0.09);
+      border: 1px solid rgba(239, 68, 68, 0.35);
+      border-radius: 10px;
+      padding: 13px 15px;
+      font-size: 13px;
+      line-height: 1.45;
+      color: #fecaca;
+      margin-bottom: 20px;
+    }
+
+    .btns {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 9px 15px;
+      border-radius: 8px;
+      font-size: 12.5px;
+      font-weight: 700;
+      text-decoration: none;
+      border: 1px solid var(--line);
+      background: var(--panel-2);
+      color: var(--ink);
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      border-color: #334155;
+    }
+
+    .btn.go {
+      background: var(--cyan);
+      border-color: var(--cyan);
+      color: #041014;
+    }
+
+    .btn.go:hover {
+      filter: brightness(1.08);
+    }
+  </style>
+</head>
+<body>
+  <div class="sheet">
+    {% if user['is_suspended'] %}
+      <span class="tag alert">Account Sospeso</span>
+      <h1>Accesso bloccato per @{{ user['username'] }}</h1>
+      <p class="lead">Questo profilo risulta attualmente sospeso sull'istanza locale.</p>
+      <div class="ban-box">
+        <strong>Motivo:</strong><br />
+        {{ user['suspension_reason'] or 'Nessun motivo specificato.' }}
+      </div>
+      <div class="btns">
+        <a href="/logout" class="btn">Esci</a>
+      </div>
+    {% else %}
+      <span class="tag">AURA // CORE • Regole</span>
+      <h1>Linee guida — @{{ user['username'] }}</h1>
+      <p class="lead">Prima di entrare in chat, dai un'occhiata alle regole base dell'ambiente locale:</p>
+      <ul class="rule-box">
+        <li><strong>Uso corretto:</strong> utilizza l'assistente locale in modo lecito e responsabile.</li>
+        <li><strong>Credenziali:</strong> mantieni riservata la password del tuo account.</li>
+        <li><strong>Moderazione:</strong> l'Owner può gestire gli utenti, applicare sospensioni e controllare le segnalazioni.</li>
+      </ul>
+      <div class="btns">
+        <a href="/chat" class="btn go">Vai alla chat →</a>
+        <a href="/logout" class="btn">Esci</a>
+      </div>
+    {% endif %}
+  </div>
+</body>
+</html>
