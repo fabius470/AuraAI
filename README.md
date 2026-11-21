@@ -9,10 +9,7 @@ Guida passo passo per scaricare **AuraAI** da GitHub, installare **Visual Studio
 ## 1. Scaricare il progetto da GitHub (ZIP)
 
 1. Vai sulla pagina GitHub ufficiale di **AuraAI**:
-   ```text
-   [https://github.com/TUO-USERNAME/TUO-REPO](https://github.com/TUO-USERNAME/TUO-REPO)
-   ```
-   *(Sostituisci con l'URL effettivo del repository non appena disponibile)*
+   [https://github.com/fabius470/AuraAI](https://github.com/fabius470/AuraAI)[cite: 1, 3]
 2. Clicca sul pulsante verde **`<> Code`** in alto a destra e seleziona **`Download ZIP`**.
 3. Estrai lo `.zip` in una cartella comoda sul tuo PC (ad esempio `C:\Users\TuoNome\Documents\auraai`).
 
@@ -130,6 +127,4 @@ auraai/
 └── README.md
 ```
 
-Ricordati di includere nel `.gitignore` i file locali come `.venv/`, `__pycache__/`, database `.db` o file utenti locali (`users.json`) prima di caricare il progetto su GitHub.
-
-Appena hai il link del repository passalo pure qui e lo inseriamo al posto del segnaposto!
+I file locali come `.venv/`, `__pycache__/`, database `.db` e `users.json` sono esclusi tramite `.gitignore` e vengono generati o gestiti in locale.
